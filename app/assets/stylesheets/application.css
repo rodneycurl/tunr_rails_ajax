@@ -85,10 +85,8 @@
    background-color: red;
  }
 
- .artist-photo {
-   width: 400px;
- }
-
- span.nationality {
-   font-size: .5em;
+ .field_with_errors {
+   padding: 2px;
+   background-color: red;
+   display: table;
  }
