@@ -31,13 +31,17 @@ $(document).ready(function(){
 
   // ajax post
   $(".test_ajax_post").on("click", function(){
+    var name = $(".name").val()
+    var photoUrl = $(".photo_url").val()
+    var nationality = $(".nationality").val()
     $.ajax({
       type: 'POST',
-      data: {artist: {photo_url: "http://vignette3.wikia.nocookie.net/southpark/images/e/ed/TreyParker.jpg/revision/latest?cb=20100414024935", name: "trey parker", nationality: "something"}},
+      data: {artist: {photo_url: photoUrl, name: name, nationality: nationality}},
       dataType: 'json',
       url: "http://localhost:3000/artists"
     }).done(function(response) {
       console.log(response)
+      $("ul.articles").append("<li><a href='/artists/" + response.id + "'>" + response.name + "</a></li>")
     }).fail(function(response){
       console.log("ajax post request failed")
     })
@@ -47,7 +51,7 @@ $(document).ready(function(){
   $(".test_ajax_put").on("click", function(){
     $.ajax({
       type: 'PUT',
-      data: {artist: {photo_url: "http://www.hercampus.com/sites/default/files/2014/11/09/Friends-season-10-014.jpg", name: "The Rembrandts", nationality: "Murica"}},
+      {artist: {photo_url: photoUrl, name: name, nationality: nationality}},
       dataType: 'json',
       url: "http://localhost:3000/artists/6"
     }).done(function(response){
@@ -64,7 +68,7 @@ $(document).ready(function(){
       dataType: 'json',
       url: "http://localhost:3000/artists/9"
     }).done(function(response){
-      console.log("shiz got deleted")
+      console.log("DELETED")
       console.log(response)
     }).fail(function(){
       console.log("failed to delete")

@@ -1,5 +1,24 @@
 <br>
 <div class="test_ajax_get">AJAX GET!!</div>
+
+<!-- form for ajax post and put request -->
+<label>Name:</label>
+<input class="name" type="text">
+<label>Photo_url:</label>
+<input class="photo_url" type="text">
+<label>Nationality:</label>
+<input class="nationality" type="text">
 <div class="test_ajax_post">AJAX POST!!</div>
 <div class="test_ajax_put">AJAX PUT!!</div>
 <div class="test_ajax_delete">AJAX DELETE!!</div>
+
+<h1>Articles</h1>
+<ul class="articles">
+  <% @artists.each do |artist| %>
+    <li>
+      <a href="/artists/<%= artist.id %>">
+        <%= artist.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
