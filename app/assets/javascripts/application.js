@@ -24,6 +24,9 @@ $(document).ready(function(){
       url: "http://localhost:3000/artists"
     }).done(function(response) {
       console.log(response)
+      for (var i = 0; i<response.length;i++){
+        $("ul.artists").append("<li><a href='/artists/" + response[i].id + "'>" + response[i].name + "</a></li>")
+      }
     }).fail(function(response){
       console.log("ajax get request failed")
     })
@@ -41,7 +44,7 @@ $(document).ready(function(){
       url: "http://localhost:3000/artists"
     }).done(function(response) {
       console.log(response)
-      $("ul.articles").append("<li><a href='/artists/" + response.id + "'>" + response.name + "</a></li>")
+      $("ul.artists").append("<li><a href='/artists/" + response.id + "'>" + response.name + "</a></li>")
     }).fail(function(response){
       console.log("ajax post request failed")
     })
@@ -49,9 +52,12 @@ $(document).ready(function(){
 
   // ajax put
   $(".test_ajax_put").on("click", function(){
+    var name = $(".name").val()
+    var photoUrl = $(".photo_url").val()
+    var nationality = $(".nationality").val()
     $.ajax({
       type: 'PUT',
-      {artist: {photo_url: photoUrl, name: name, nationality: nationality}},
+      data:{artist: {photo_url: photoUrl, name: name, nationality: nationality}},
       dataType: 'json',
       url: "http://localhost:3000/artists/6"
     }).done(function(response){
@@ -66,7 +72,7 @@ $(document).ready(function(){
     $.ajax({
       type: 'DELETE',
       dataType: 'json',
-      url: "http://localhost:3000/artists/9"
+      url: "http://localhost:3000/artists/3"
     }).done(function(response){
       console.log("DELETED")
       console.log(response)
