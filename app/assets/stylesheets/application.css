@@ -26,6 +26,7 @@
    margin: .5em;
    padding: .5em;
    background-color: #eeeeee;
+   display: inline-block;
  }
 
  nav a:hover {
