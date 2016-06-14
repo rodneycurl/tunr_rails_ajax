@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Tunr
   class Application < Rails::Application
     config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => 'http://my-web-service-consumer-site.com',
+      'Access-Control-Allow-Origin' => '*',
       'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
     }
     # Settings in config/environments/* take precedence over those specified here.
