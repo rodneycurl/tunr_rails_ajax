@@ -6,7 +6,7 @@ class ArtistsController < ApplicationController
   def index
     @artists = Artist.all
     respond_to do |format|
-      format.html { render :index }
+      format.html { render json: @artists }
       format.json { render json: @artists }
     end
   end
@@ -15,7 +15,7 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     respond_to do |format|
-      format.html { render :show }
+      format.html { render json: @artist }
       format.json { render json: @artist }
     end
   end
@@ -36,10 +36,10 @@ class ArtistsController < ApplicationController
 
     respond_to do |format|
       if @artist.save
-        format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-        format.json { render :show, status: :created, location: @artist }
+        format.html { render json: @artist, status: :created, location: @artist }
+        format.json { render json: @artist, status: :created, location: @artist }
       else
-        format.html { render :new }
+        format.html { render json: @artist.errors, status: :unprocessable_entity }
         format.json { render json: @artist.errors, status: :unprocessable_entity }
       end
     end
@@ -50,10 +50,10 @@ class ArtistsController < ApplicationController
   def update
     respond_to do |format|
       if @artist.update(artist_params)
-        format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @artist }
+        format.html { render json: @artist, status: :ok, location: @artist }
+        format.json { render json: @artist, status: :ok, location: @artist }
       else
-        format.html { render :edit }
+        format.html { render json: @artist.errors, status: :unprocessable_entity }
         format.json { render json: @artist.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +64,7 @@ class ArtistsController < ApplicationController
   def destroy
     @artist.destroy
     respond_to do |format|
-      format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
+      format.html { head :no_content }
       format.json { head :no_content }
     end
   end
